@@ -3,12 +3,11 @@ import { weekDays } from '../data';
 
 const DataForDate = props => {
   const { data } = props;
-  console.log(data);
   if(data) {
     data.UTCDate = new Date(data.date);
     return(
       <div>
-      <h1> {weekDays[data.UTCDate.getDay()]} {data.date} </h1>
+      <h2> {weekDays[data.UTCDate.getDay()]} {data.date} </h2>
       <ul>
         <li>World Cases: {data.world_cases}</li>
         <li>World Deaths: {data.world_deaths}</li>
