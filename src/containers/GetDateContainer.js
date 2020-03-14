@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DataForDate from '../components/DataForDate';
 import { WHODat } from '../data';
+import { formatDateToString } from '../helperFunctions';
 
 class GetDateContainer extends Component {
   state = {
@@ -10,21 +11,15 @@ class GetDateContainer extends Component {
 
   handleChange = event => {
     this.setState({
+      noShow: false,
       [event.target.name]: event.target.value
     })
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
-    this.setState({
-      noShow: false
-    });
-  }
-
   getDataForDate = () => {
-    console.log(new Date(this.state.date));
-    const dataForDate = WHODat.find(date => new Date(date) === new Date(this.state.date));
-    console.log(dataForDate);
+    const dateToFind = formatDateToString(this.state.date);
+    const dataForDate = WHODat.find(dateData => dateData.date === dateToFind);
+    return dataForDate;
   }
 
   render() {
@@ -32,7 +27,6 @@ class GetDateContainer extends Component {
       <>
         <form>
           <input name="date" type="date" onChange={this.handleChange} value={this.state.date} />
-          <button onClick={this.handleSubmit}>Use this date...</button><br />
           { this.state.noShow ? "" : <DataForDate data={this.getDataForDate()} /> }
         </form>
       </>

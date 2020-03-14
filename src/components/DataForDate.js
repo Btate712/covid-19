@@ -3,9 +3,11 @@ import { weekDays } from '../data';
 
 const DataForDate = props => {
   const { data } = props;
-  data.UTCDate = new Date(data.date);
-  return(
-    <div>
+  console.log(data);
+  if(data) {
+    data.UTCDate = new Date(data.date);
+    return(
+      <div>
       <h1> {weekDays[data.UTCDate.getDay()]} {data.date} </h1>
       <ul>
         <li>World Cases: {data.world_cases}</li>
@@ -14,7 +16,9 @@ const DataForDate = props => {
         <li>United States Deaths: {data.united_states_deaths}</li>
       </ul>
     </div>
-  )
+  )} else {
+    return (<h2>No data available for this date</h2>);
+  }
 }
 
 export default DataForDate;
