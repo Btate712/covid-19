@@ -1,24 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AllData from './containers/AllData';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import GetDateContainer from './containers/GetDateContainer';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          <Route path="/data/date">
+            <GetDateContainer />
+          </Route>
+          <Route path="/data">
+            <AllData />
+          </Route>
+          <Route path='/' >
+            <h1>Options</h1>
+            <ul>
+              <li>
+                <Link to="/data">Show all available WHO data</Link>
+              </li>
+              <li>
+                <Link to="/data/date">Show data for a particular date</Link>
+              </li>
+            </ul>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
