@@ -372,4 +372,11 @@ export const WHODat = [
     united_states_cases: 1264,
     united_states_deaths: 36
   },
+  {
+    date: "3/14/20",
+    world_cases: 142539,
+    world_deaths: 5393,
+    united_states_cases: 1678,
+    united_states_deaths: 41
+  }
 ]
